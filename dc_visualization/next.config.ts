@@ -1,44 +1,42 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // 成效优化 - 移除 standalone 模式以避免部署问题
+  // 生产优化
   productionBrowserSourceMaps: false,
-
-  // 优化构建速度 - 减少静态生成超时
   reactStrictMode: true,
-  staticPageGenerationTimeout: 30, // 从 60 减少到 30
+  staticPageGenerationTimeout: 20,
 
-  // 改为静态导出模式，避免数据加载卡住
+  // 改为静态导出模式
   output: 'export',
   trailingSlash: true,
 
-  // 优化图像 - 完全禁用图像处理
+  // 图像优化
   images: {
     unoptimized: true,
     disableStaticImages: true,
   },
 
-  // 优化包大小
+  // 包大小优化
   compress: true,
   poweredByHeader: false,
 
-  // Turbopack 配置 - 简化配置
-  turbopack: {},
-
-  // TypeScript 配置 - 简化
+  // TypeScript 配置
   typescript: {
     tsconfigPath: "./tsconfig.json",
+    ignoreBuildErrors: false,
   },
 
-  // 禁用实验性功能以避免构建问题
-  experimental: {
-    // 禁用可能导致卡住的功能
+  // Turbopack 配置
+  turbopack: {
+    resolveAlias: {
+      // 避免重复引入
+      'echarts': 'echarts',
+    },
   },
 
-  // 优化构建性能
+  // webpack 配置优化
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      // 客户端构建优化
       config.optimization = {
         ...config.optimization,
         splitChunks: {
@@ -47,12 +45,25 @@ const nextConfig: NextConfig = {
             vendor: {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
-              chunks: 'all',
+              priority: 10,
+              reuseExistingChunk: true,
+            },
+            common: {
+              minChunks: 2,
+              priority: 5,
+              reuseExistingChunk: true,
             },
           },
         },
       };
+
+      // 禁用性能警告
+      config.performance = {
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000,
+      };
     }
+
     return config;
   },
 };

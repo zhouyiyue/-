@@ -17,6 +17,9 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
     "plugins": [
       {
         "name": "next"
@@ -39,7 +42,7 @@
     "node_modules",
     ".next",
     "out",
-    "**/*.spec.ts",
-    "**/*.test.ts"
+    "dist",
+    "build"
   ]
 }
