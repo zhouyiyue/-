@@ -1,4 +1,14 @@
 {
+  "private": true,
+  "workspaces": [
+    "dc_visualization"
+  ],
+  "scripts": {
+    "dev": "cd dc_visualization && npm run dev",
+    "build": "cd dc_visualization && npm run build",
+    "start": "cd dc_visualization && npm run start",
+    "postinstall": "cd dc_visualization && npm install"
+  },
   "dependencies": {
     "clsx": "^2.1.1",
     "echarts": "^6.0.0",

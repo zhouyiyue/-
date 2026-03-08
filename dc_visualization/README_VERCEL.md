@@ -25,8 +25,13 @@
 ## 🚀 部署步骤 (3分钟)
 
 ### 1️⃣ 推送到 GitHub
+
+> 仓库已配置为 monorepo 格式，根目录包含 `vercel.json` 和脚本，会自动重定向到 `dc_visualization` 子目录。
+
 ```bash
-cd d:\自建\武\大创-台风预测\可视化平台\dc_visualization
+cd d:\自建\武\大创-台风预测\可视化平台
+
+# 初始化仓库（如果尚未）
 git init
 git add .
 git commit -m "Ready for Vercel deployment"

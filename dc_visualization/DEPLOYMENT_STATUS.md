@@ -43,11 +43,13 @@
 
 ### 推荐部署方式：
 
-#### 方式：使用 Vercel UI 部署（推荐）
+项目根目录已经通过 `vercel.json` 指定了 `dc_visualization` 为真实应用目录，而根 `package.json` 包含辅助脚本，Vercel 会从仓库根运行构建命令。
 
 1. **推送到 GitHub**
 ```bash
-cd d:\自建\武\大创-台风预测\可视化平台\dc_visualization
+cd d:\自建\武\大创-台风预测\可视化平台
+
+# 初始化仓库，如果尚未完成
 git init
 git add .
 git commit -m "准备部署到Vercel"
@@ -60,9 +62,12 @@ git push -u origin main
    - 访问 https://vercel.com
    - 使用 GitHub 账户登录
    - 点击 "Add New Project"
-   - 选择刚推送的仓库
-   - 设置 "Root Directory" 为 `dc_visualization`
+   - 选择你的仓库
+   - 根目录中的 `vercel.json` 会自动告诉 Vercel 要构建的子目录
+   - 如果界面提示配置 Root Directory，可留空或设置为仓库根
    - 点击 "Deploy"
+
+> ⚠️ 若再次看到 404，请确认已将根级 `vercel.json`、`.vercelignore` 以及 `package.json` 提交到仓库，并重新触发部署。
 
 ## 📋 最终检查清单
 

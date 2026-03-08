@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
   // 优化生产构建
@@ -17,9 +16,7 @@ const nextConfig: NextConfig = {
   },
   
   // Turbopack 配置
-  turbopack: {
-    root: path.resolve(__dirname),
-  },
+  turbopack: {},
 };
 
 export default nextConfig;

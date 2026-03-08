@@ -24,9 +24,11 @@
 
 ### 使用 Git 部署
 
+整个仓库已经通过根 `package.json` 和根级 `vercel.json` 指定了子目录 `dc_visualization` 为实际的应用根，因此你可以在仓库根上执行以下命令：
+
 ```bash
-# 1. 进入项目目录
-cd dc_visualization
+# 1. 进入项目根目录
+cd .
 
 # 2. 初始化 git（如果尚未初始化）
 git init
@@ -35,7 +37,7 @@ git init
 git add .
 
 # 4. 提交
-git commit -m "準備部署到Vercel"
+git commit -m "准备部署到 Vercel"
 
 # 5. 添加远程仓库
 git remote add origin https://github.com/<你的用户名>/<仓库名>.git
@@ -50,14 +52,9 @@ git push -u origin main
 1. 访问 https://vercel.com
 2. 登录或注册账户
 3. 点击 "Add New Project"
-4. 选择 GitHub 仓库
-5. 配置项目设置：
-   - **Framework**: Next.js (自动检测)
-   - **Root Directory**: `dc_visualization`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `.next`
-   - **Install Command**: `npm install`
-
+4. 选择你的 GitHub 仓库
+5. Vercel 会自动检测到根 `vercel.json`，不需要额外设置 Root Directory
+   > 如果仍然提示，请确保 "Root Directory" 为空或为仓库根。
 6. 点击 "Deploy"
 
 ## 故障排除
