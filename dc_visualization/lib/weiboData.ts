@@ -115,6 +115,11 @@ const DATE_ORDER = [
 ];
 
 export async function loadWeiboChartData(): Promise<WeiboChartData> {
+  // 在构建时返回空数据，避免静态生成卡住
+  if (typeof window === 'undefined') {
+    return getDefaultData();
+  }
+
   let rows: CsvRow[];
   try {
     const res = await fetch(CSV_PATH);
