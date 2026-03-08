@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Next.js (dc_visualization)
+dc_visualization/.next/
+dc_visualization/out/
+
+# Build / cache
+.next/
+out/
+*.tsbuildinfo
+
+# Env
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Optional: 若 data 下 CSV 过大可不提交，取消下面注释
+# data/*.csv
