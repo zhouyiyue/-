@@ -6,9 +6,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   staticPageGenerationTimeout: 20,
 
-  // 改为静态导出模式
-  output: 'export',
-  trailingSlash: true,
+  // 移除 export 模式，使用标准 SSG
+  // output: 'export' 与 dynamic() 不兼容
 
   // 图像优化
   images: {
@@ -29,7 +28,6 @@ const nextConfig: NextConfig = {
   // Turbopack 配置
   turbopack: {
     resolveAlias: {
-      // 避免重复引入
       'echarts': 'echarts',
     },
   },
