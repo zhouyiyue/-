@@ -1,13 +1,24 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense, lazy } from "react";
+import dynamic from "next/dynamic";
 import DataCard from "../components/DataCard";
 import ScreenAdapter from "../components/ScreenAdapter";
-import EmotionLine from "../components/charts/EmotionLine";
-import HierarchyBar from "../components/charts/HierarchyBar";
-import MapChart from "../components/charts/MapChart";
-import TrendChart from "../components/charts/TrendChart";
 import { loadWeiboChartData } from "../lib/weiboData";
+
+// 动态导入图表以减少初始包大小
+const EmotionLine = dynamic(() => import("../components/charts/EmotionLine"), { 
+  loading: () => <div className="h-full bg-black/20 rounded animate-pulse" /> 
+});
+const HierarchyBar = dynamic(() => import("../components/charts/HierarchyBar"), { 
+  loading: () => <div className="h-full bg-black/20 rounded animate-pulse" /> 
+});
+const MapChart = dynamic(() => import("../components/charts/MapChart"), { 
+  loading: () => <div className="h-full bg-black/20 rounded animate-pulse" /> 
+});
+const TrendChart = dynamic(() => import("../components/charts/TrendChart"), { 
+  loading: () => <div className="h-full bg-black/20 rounded animate-pulse" /> 
+});
 
 function formatNow(d: Date) {
   const y = d.getFullYear();

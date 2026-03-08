@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cd dc_visualization && npm run dev",
     "build": "cd dc_visualization && npm run build",
+    "build:analyze": "cd dc_visualization && npm run build -- --analyze",
     "start": "cd dc_visualization && npm run start",
     "postinstall": "cd dc_visualization && npm install"
   },
