@@ -4,10 +4,11 @@ const nextConfig: NextConfig = {
   // 生产优化
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
-  staticPageGenerationTimeout: 20,
+  staticPageGenerationTimeout: 60, // 增加超时时间
 
-  // 移除 export 模式，使用标准 SSG
-  // output: 'export' 与 dynamic() 不兼容
+  // 完全禁用静态生成，使用客户端渲染
+  output: 'export',
+  trailingSlash: true,
 
   // 图像优化
   images: {
@@ -25,45 +26,10 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: false,
   },
 
-  // Turbopack 配置
-  turbopack: {
-    resolveAlias: {
-      'echarts': 'echarts',
-    },
-  },
+  // Turbopack 配置 - 简化配置
+  turbopack: {},
 
-  // webpack 配置优化
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              priority: 10,
-              reuseExistingChunk: true,
-            },
-            common: {
-              minChunks: 2,
-              priority: 5,
-              reuseExistingChunk: true,
-            },
-          },
-        },
-      };
-
-      // 禁用性能警告
-      config.performance = {
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000,
-      };
-    }
-
-    return config;
-  },
+  // 移除 webpack 配置，使用 Turbopack 默认优化
 };
 
 export default nextConfig;
