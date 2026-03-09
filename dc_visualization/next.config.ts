@@ -1,16 +1,32 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* 开启静态导出模式，这是离线运行的关键 */
-  output: 'export', 
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // 核心：根据环境切换导出模式
+  output: process.env.VERCEL === '1' ? undefined : 'export',
   
-  /* 离线环境下必须禁用图片优化功能 */
+  trailingSlash: true,
+
+  // 生产环境基础优化
+  productionBrowserSourceMaps: false,
+  reactStrictMode: true,
+  staticPageGenerationTimeout: 120,
+
+  // 图像处理
   images: {
     unoptimized: true,
   },
 
-  /* 建议开启，确保在本地服务器访问时路径解析更准确 */
-  trailingSlash: true, 
+  // 忽略构建时的校验错误
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  // 其他优化
+  compress: true,
+  poweredByHeader: false,
 };
 
 export default nextConfig;

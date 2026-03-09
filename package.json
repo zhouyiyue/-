@@ -11,11 +11,21 @@
     "postinstall": "cd dc_visualization && npm install"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "autoprefixer": "^10.4.27",
     "clsx": "^2.1.1",
     "echarts": "^6.0.0",
     "echarts-for-react": "^3.0.6",
     "lucide-react": "^0.577.0",
     "papaparse": "^5.5.3",
-    "tailwind-merge": "^3.5.0"
+    "postcss": "^8.5.8",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/echarts": "^4.9.22",
+    "@types/node": "^25.3.5",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19.2.14"
   }
 }
